@@ -334,27 +334,24 @@ function playerReady(event)
   event.target.playVideo();
 }
 
+cover=document.createElement('cover');
+document.getElementsByTagName('container')[0].appendChild(cover);
+cover.id='cover';
+cover.setAttribute('style', 'position:absolute; top:360px; left:640px; background:black; width:640px; height:360px; z-index:11; pointer-events:none; transition:3s;');
+
 function previewStateChange(event)
 {
   if(event.data === 0)
   {
     var cover=document.getElementById('cover');
-    if(!cover)
-    {
-      cover=document.createElement('cover');
-      document.getElementsByTagName('container')[0].appendChild(cover);
-      cover.id='cover';
-      cover.setAttribute('style', 'position:absolute; top:360px; left:640px; background:black; width:640px; height:360px; z-index:11; pointer-events:none;');
-    }
     cover.style.opacity=1;
+    cover.style.pointerEvents='';
   }
   if(event.data === 1)
   {
     var cover=document.getElementById('cover');
-    if(cover)
-    {
-      cover.style.opacity=0;
-    }
+    cover.style.opacity=0;
+    cover.style.pointerEvents='none';
   }
 }
 
